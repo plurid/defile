@@ -6,7 +6,6 @@ import React, {
 } from 'react';
 
 import {
-    StyledPage,
     StyledFileList,
 } from './styled';
 
@@ -28,21 +27,19 @@ const Page: React.FC<PageProperties> = (properties) => {
     } = context;
 
     return (
-        <StyledPage>
-            <StyledFileList>
-                <ul>
-                    {files.map((file: any) => {
-                        return (
-                            <li
-                                key={file}
-                            >
-                                {file}
-                            </li>
-                        )
-                    })}
-                </ul>
-            </StyledFileList>
-        </StyledPage>
+        <StyledFileList>
+            <ul>
+                {files.map((file: any) => {
+                    return (
+                        <li
+                            key={file}
+                        >
+                            {file}
+                        </li>
+                    )
+                })}
+            </ul>
+        </StyledFileList>
     );
 }
 

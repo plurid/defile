@@ -2,13 +2,10 @@ import styled from 'styled-components';
 
 
 
-export const StyledPage: any = styled.div`
+export const StyledFileList: any = styled.div`
     font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI',
         Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-`;
 
-
-export const StyledFileList: any = styled.div`
     ul {
         list-style: none;
         padding: 0;
