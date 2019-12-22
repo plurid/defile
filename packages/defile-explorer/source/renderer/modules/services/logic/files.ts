@@ -8,7 +8,15 @@ import os from 'os';
 export const getHomeDirectory = async () => {
     const homeDirectory = os.homedir();
 
-    const files = await fs.readdir(homeDirectory);
+    const files = await getDirectoryFiles(homeDirectory);
+    return files;
+}
+
+
+export const getDirectoryFiles = async (
+    path: string,
+) => {
+    const files = await fs.readdir(path);
     return files;
 }
 
