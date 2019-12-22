@@ -7,10 +7,10 @@ import PluridApp, {
     PluridPage,
     PluridConfiguration,
     RecursivePartial,
-    SPACE_LAYOUT,
+    // SPACE_LAYOUT,
 } from '@plurid/plurid-react';
 
-import Page from '../../components/Page';
+import FileList from '../../components/FileList';
 
 import PluriverseContext from './context';
 
@@ -28,7 +28,7 @@ const Pluriverse: React.FC<any> = () => {
             id: 'home',
             path: '/',
             component: {
-                element: () => <Page id="home" />,
+                element: () => <FileList id="home" />,
             },
             root: true,
         },
