@@ -1,0 +1,55 @@
+{
+    "name": "@plurid/den",
+    "version": "0.0.1",
+    "description": "Plurid-powered web browser based on Electron/Chromium.",
+    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
+    "license": "MIT",
+    "homepage": "https://den.plurid.com",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/plurid/den"
+    },
+    "bugs": {
+        "url": "https://github.com/plurid/den/issues"
+    },
+    "scripts": {
+        "clean": "rm -rf ./build",
+        "test": "jest ./app/test/unit/",
+        "watch": "yarn clean && webpack --watch --config ./scripts/webpack.config.js --env dev",
+        "develop": "yarn clean && webpack --config ./scripts/webpack.config.js",
+        "build": "yarn clean && webpack --config ./scripts/webpack.config.js -p --env prod --progress --profile --colors",
+        "electron": "electron ./build/",
+        "electron.run": "yarn develop && yarn electron",
+        "electron.linux": "yarn build && electron-packager ./build/ den --overwrite --asar=true --platform=linux --arch=x64 --icon=./build/assets/meta/den.png --prune=true --out=den",
+        "electron.mac": "yarn build && electron-packager ./build/ --overwrite --platform=darwin --arch=x64 --icon=./build/assets/meta/den.icns --prune=true --out=den",
+        "electron.windows": "yarn build && electron-packager ./build/ den --overwrite --asar=true --platform=win32 --arch=ia32 --icon=./build/assets/meta/den.ico --prune=true --out=den --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"den\""
+    },
+    "devDependencies": {
+        "@types/jest": "^24.0.24",
+        "@types/react": "^16.9.17",
+        "@types/react-dom": "^16.9.4",
+        "@types/styled-components": "^4.4.1",
+        "copy-webpack-plugin": "^5.1.1",
+        "electron-packager": "^14.1.1",
+        "html-webpack-plugin": "^3.2.0",
+        "jest": "^24.9.0",
+        "ts-jest": "^24.2.0",
+        "ts-loader": "^6.2.1",
+        "ts-node": "^8.5.4",
+        "typescript": "^3.7.4",
+        "webpack": "^4.41.4",
+        "webpack-cli": "^3.3.10"
+    },
+    "dependencies": {
+        "@plurid/plurid-react": "^0.1.84",
+        "@plurid/plurid-themes": "^0.1.21",
+        "electron": "^7.1.7",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0",
+        "react-redux": "^7.1.3",
+        "redux": "^4.0.4",
+        "redux-devtools-extension": "^2.13.8",
+        "redux-thunk": "^2.3.0",
+        "styled-components": "^4.4.1"
+    }
+}
