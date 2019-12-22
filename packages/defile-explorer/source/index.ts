@@ -15,10 +15,10 @@ function createWindow() {
     win = new BrowserWindow({
         width: 1000,
         height: 800,
-        icon: './assets/meta/den.png',
+        icon: './assets/meta/defile.png',
         minHeight: 500,
         minWidth: 300,
-        title: 'den',
+        title: 'defile',
         titleBarStyle: 'hiddenInset',
         webPreferences: {
             nodeIntegration: true,
