@@ -13,7 +13,7 @@
         "url": "https://github.com/plurid/defile/issues"
     },
     "scripts": {
-        "clean": "rm -rf ./build",
+        "clean": "rm -rf ./build && rm -rf ./defile",
         "test": "jest ./app/test/unit/",
         "watch": "yarn clean && webpack --watch --config ./scripts/webpack.config.js --env dev",
         "develop": "yarn clean && webpack --config ./scripts/webpack.config.js",
