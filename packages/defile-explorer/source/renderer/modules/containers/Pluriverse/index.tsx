@@ -15,6 +15,7 @@ import FileList from '../../components/FileList';
 import PluriverseContext from './context';
 
 import {
+    ignoreHiddenFiles,
     getHomeDirectory,
 } from '../../services/logic/files';
 
@@ -49,9 +50,7 @@ const Pluriverse: React.FC<any> = () => {
     useEffect(() => {
         const getFiles = async () => {
             const files = await getHomeDirectory();
-            setFiles(
-                files.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item))
-            );
+            setFiles(ignoreHiddenFiles(files));
         }
 
         getFiles();

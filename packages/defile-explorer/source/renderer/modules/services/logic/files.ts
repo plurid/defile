@@ -11,3 +11,12 @@ export const getHomeDirectory = async () => {
     const files = await fs.readdir(homeDirectory);
     return files;
 }
+
+
+export const ignoreHiddenFiles = (
+    files: string[],
+) => {
+    return files.filter(
+        file => !(/(^|\/)\.[^\/\.]/g).test(file)
+    );
+}
