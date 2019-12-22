@@ -34,6 +34,6 @@ Download system-specific application from [defile.plurid.com](https://defile.plu
 
 ## Screenshots
 
-<!-- <p align="center">
+<p align="center">
     <img src="https://raw.githubusercontent.com/plurid/defile/master/packages/defile-explorer/about/screenshots/ss-1.png" height="500px">
-</p> -->
+</p>
