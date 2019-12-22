@@ -1,5 +1,6 @@
 import React, {
-    // useState,
+    useState,
+    useEffect,
 } from 'react';
 
 import PluridApp, {
@@ -13,30 +14,51 @@ import Page from '../../components/Page';
 
 import PluriverseContext from './context';
 
+import {
+    getHomeDirectory,
+} from '../../services/logic/files';
+
 
 
 const Pluriverse: React.FC<any> = () => {
+    const [files, setFiles] = useState<string[]>([]);
+
     const pluridPages: PluridPage[] = [
         {
-            id: 'one',
-            path: '/one',
+            id: 'home',
+            path: '/',
             component: {
-                element: () => <Page id="one" />,
+                element: () => <Page id="home" />,
             },
             root: true,
         },
     ];
 
     const pluridAppConfiguration: RecursivePartial<PluridConfiguration> = {
-        theme: 'plurid',
-        space: {
-            layout: {
-                type: SPACE_LAYOUT.ZIG_ZAG,
+        theme: 'defile',
+        elements: {
+            plane: {
+                width: 0.5,
             },
+        },
+        space: {
+            center: true,
         },
     };
 
+    useEffect(() => {
+        const getFiles = async () => {
+            const files = await getHomeDirectory();
+            setFiles(
+                files.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item))
+            );
+        }
+
+        getFiles();
+    }, []);
+
     const pageContext = {
+        files,
     };
 
     return (
