@@ -26,21 +26,16 @@ import {
 
 interface FileListProperties {
     path: string;
-    [key: string]: any;
+    plurid: any;
 }
 
 const FileList: React.FC<FileListProperties> = (properties) => {
-    // const context: any = useContext(PluriverseContext);
-    // const {
-    //     files,
-    // } = context;
-
     const {
         path,
         plurid,
     } = properties;
 
-    console.log(properties);
+    console.log(plurid);
 
     const [files, setFiles] = useState<Dirent[]>([]);
 
