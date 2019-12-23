@@ -15,6 +15,9 @@ import {
 
 // import PageBar from './components/PageBar';
 
+import DirectoryIcon from '../../assets/icons/directory-icon';
+import FileIcon from '../../assets/icons/file-icon';
+
 import PluriverseContext from '../../containers/Pluriverse/context';
 
 
@@ -44,9 +47,9 @@ const Page: React.FC<PageProperties> = (properties) => {
                             key={file.name}
                         >
                             {isDirectory
-                                ? 'dir'
+                                ? (<DirectoryIcon />)
                                 : isFile
-                                    ? 'file'
+                                    ? (<FileIcon />)
                                     : ''
                             } - {file.name}
                         </li>
