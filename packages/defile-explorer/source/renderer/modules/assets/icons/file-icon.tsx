@@ -2,6 +2,18 @@ import React from 'react';
 
 
 
+const handleExtensionText = (
+    extension: string,
+) => {
+    let extensionText = extension.replace('.', '').toUpperCase();
+
+    if (extensionText.length > 3) {
+        return extensionText.slice(0, 3);
+    }
+    return extensionText;
+}
+
+
 interface FileIconOwnProperties {
     extension: string;
 }
@@ -12,16 +24,6 @@ const FileIcon: React.FC<FileIconProperties> = (properties) => {
     const {
         extension,
     } = properties;
-
-    const handleExtensionText = (extension: string) => {
-        let extensionText = extension.replace('.', '').toUpperCase();
-
-        if (extensionText.length > 3) {
-            return extensionText.slice(0, 3);
-        }
-
-        return extensionText;
-    }
 
     const extensionText = handleExtensionText(extension);
 
@@ -74,9 +76,6 @@ const FileIcon: React.FC<FileIconProperties> = (properties) => {
                             transform="translate(445.88 726.26)"
                         >
                             {extensionText}
-                            {/* <tspan className="cls-4">E</tspan>
-                            <tspan className="cls-5" x="156.49" y="0">X</tspan>
-                            <tspan x="331.74" y="0">T</tspan> */}
                         </text>
                     </g>
                 )}
