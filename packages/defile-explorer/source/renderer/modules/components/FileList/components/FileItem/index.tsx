@@ -41,7 +41,7 @@ const FileItem: React.FC<FileItemOwnProperties> = (properties) => {
 
     return (
         <PluridLink
-            page="/"
+            page="/asd"
             devisible={true}
             style={{
                 display: 'block',

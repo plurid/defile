@@ -33,7 +33,11 @@ const Pluriverse: React.FC<any> = () => {
             id: 'home',
             path: '/:path',
             component: {
-                element: () => <FileList path="/Users/Cavel" />,
+                element: () => (
+                    <FileList
+                        path="/Users/Cavel/Desktop/defile/"
+                    />
+                ),
             },
             root: true,
         },
