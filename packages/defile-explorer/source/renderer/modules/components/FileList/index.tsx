@@ -14,9 +14,7 @@ import {
 } from './styled';
 
 // import PageBar from './components/PageBar';
-
-import DirectoryIcon from '../../assets/icons/directory-icon';
-import FileIcon from '../../assets/icons/file-icon';
+import FileItem from './components/FileItem';
 
 import PluriverseContext from '../../containers/Pluriverse/context';
 
@@ -33,25 +31,17 @@ const Page: React.FC<PageProperties> = (properties) => {
         files,
     } = context;
 
-    console.log(files);
-
     return (
         <StyledFileList>
             <ul>
                 {files.map((file: Dirent) => {
-                    const isFile = file.isFile();
-                    const isDirectory = file.isDirectory();
-
                     return (
                         <li
                             key={file.name}
                         >
-                            {isDirectory
-                                ? (<DirectoryIcon />)
-                                : isFile
-                                    ? (<FileIcon />)
-                                    : ''
-                            } - {file.name}
+                            <FileItem
+                                file={file}
+                            />
                         </li>
                     )
                 })}
