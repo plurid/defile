@@ -44,6 +44,9 @@ const FileItem: React.FC<FileItemOwnProperties> = (properties) => {
             <PluridLink
                 page="/"
                 devisible={true}
+                style={{
+                    display: 'flex'
+                }}
             >
                 <StyledFileItemIcon>
                     {isDirectory
