@@ -1,3 +1,7 @@
+import {
+    Dirent,
+} from 'fs';
+
 import React, {
     // useRef,
     useContext,
@@ -26,15 +30,25 @@ const Page: React.FC<PageProperties> = (properties) => {
         files,
     } = context;
 
+    console.log(files);
+
     return (
         <StyledFileList>
             <ul>
-                {files.map((file: any) => {
+                {files.map((file: Dirent) => {
+                    const isFile = file.isFile();
+                    const isDirectory = file.isDirectory();
+
                     return (
                         <li
-                            key={file}
+                            key={file.name}
                         >
-                            {file}
+                            {isDirectory
+                                ? 'dir'
+                                : isFile
+                                    ? 'file'
+                                    : ''
+                            } - {file.name}
                         </li>
                     )
                 })}

@@ -1,3 +1,7 @@
+import {
+    Dirent,
+} from 'fs';
+
 import React, {
     useState,
     useEffect,
@@ -22,7 +26,7 @@ import {
 
 
 const Pluriverse: React.FC<any> = () => {
-    const [files, setFiles] = useState<string[]>([]);
+    const [files, setFiles] = useState<Dirent[]>([]);
 
     const pluridPages: PluridPage[] = [
         {
