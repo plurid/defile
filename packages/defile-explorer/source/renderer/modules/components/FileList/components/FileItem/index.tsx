@@ -40,14 +40,15 @@ const FileItem: React.FC<FileItemOwnProperties> = (properties) => {
         : '';
 
     return (
-        <StyledFileItem>
-            <PluridLink
-                page="/"
-                devisible={true}
-                style={{
-                    display: 'flex'
-                }}
-            >
+        <PluridLink
+            page="/"
+            devisible={true}
+            style={{
+                display: 'block',
+                width: '100%',
+            }}
+        >
+            <StyledFileItem>
                 <StyledFileItemIcon>
                     {isDirectory
                         ? (
@@ -66,8 +67,8 @@ const FileItem: React.FC<FileItemOwnProperties> = (properties) => {
                 <StyledFileItemName>
                     {file.name}
                 </StyledFileItemName>
-            </PluridLink>
-        </StyledFileItem>
+            </StyledFileItem>
+        </PluridLink>
     );
 }
 
