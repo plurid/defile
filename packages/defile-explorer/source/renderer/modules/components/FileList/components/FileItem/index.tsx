@@ -25,6 +25,7 @@ const FileItem: React.FC<FileItemOwnProperties> = (properties) => {
     const {
         file,
     } = properties;
+    console.log(file);
 
     const isFile = file.isFile();
     const isDirectory = file.isDirectory();
