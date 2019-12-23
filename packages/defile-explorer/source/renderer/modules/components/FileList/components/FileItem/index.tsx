@@ -9,6 +9,10 @@ import React, {
 } from 'react';
 
 import {
+    PluridLink,
+} from '@plurid/plurid-react';
+
+import {
     StyledFileItem,
     StyledFileItemIcon,
     StyledFileItemName,
@@ -37,24 +41,29 @@ const FileItem: React.FC<FileItemOwnProperties> = (properties) => {
 
     return (
         <StyledFileItem>
-            <StyledFileItemIcon>
-                {isDirectory
-                    ? (
-                        <DirectoryIcon
-                        />
-                    ) : isFile
+            <PluridLink
+                page="/"
+                devisible={true}
+            >
+                <StyledFileItemIcon>
+                    {isDirectory
                         ? (
-                            <FileIcon
-                                extension={extension}
+                            <DirectoryIcon
                             />
-                        )
-                        : ''
-                }
-            </StyledFileItemIcon>
+                        ) : isFile
+                            ? (
+                                <FileIcon
+                                    extension={extension}
+                                />
+                            )
+                            : ''
+                    }
+                </StyledFileItemIcon>
 
-            <StyledFileItemName>
-                {file.name}
-            </StyledFileItemName>
+                <StyledFileItemName>
+                    {file.name}
+                </StyledFileItemName>
+            </PluridLink>
         </StyledFileItem>
     );
 }
