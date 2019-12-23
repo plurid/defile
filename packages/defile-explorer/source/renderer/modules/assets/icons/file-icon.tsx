@@ -70,10 +70,19 @@ const FileIcon: React.FC<FileIconProperties> = (properties) => {
 
                 {extensionText && (
                     <g>
-                        <rect className="cls-2" x="396.5" y="474" width="584" height="314"/>
+                        <rect
+                            className="cls-2"
+                            x="396.5"
+                            y="474"
+                            width="584"
+                            height="314"
+                        />
                         <text
                             className="cls-3"
-                            transform="translate(445.88 726.26)"
+                            x="688.5"
+                            y="661"
+                            dominantBaseline="middle"
+                            textAnchor="middle"
                         >
                             {extensionText}
                         </text>
