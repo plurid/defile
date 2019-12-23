@@ -3,10 +3,9 @@ import {
 } from 'fs';
 
 import React, {
-    // useRef,
-    useContext,
-    // useState,
-    // useEffect,
+    // useContext,
+    useState,
+    useEffect,
 } from 'react';
 
 import {
@@ -16,20 +15,43 @@ import {
 // import PageBar from './components/PageBar';
 import FileItem from './components/FileItem';
 
-import PluriverseContext from '../../containers/Pluriverse/context';
+// import PluriverseContext from '../../containers/Pluriverse/context';
+
+import {
+    ignoreHiddenFiles,
+    getDirectoryFiles,
+} from '../../services/logic/files';
 
 
 
-interface PageProperties {
-    id: string;
+interface FileListProperties {
+    path: string;
+    [key: string]: any;
 }
 
-const Page: React.FC<PageProperties> = (properties) => {
-    const context: any = useContext(PluriverseContext);
+const FileList: React.FC<FileListProperties> = (properties) => {
+    // const context: any = useContext(PluriverseContext);
+    // const {
+    //     files,
+    // } = context;
 
     const {
-        files,
-    } = context;
+        path,
+        plurid,
+    } = properties;
+
+    console.log(plurid);
+
+    const [files, setFiles] = useState<Dirent[]>([]);
+
+    useEffect(() => {
+        const getFiles = async () => {
+            const files = await getDirectoryFiles(path);
+            setFiles(ignoreHiddenFiles(files));
+        }
+
+        getFiles();
+    }, []);
 
     return (
         <StyledFileList>
@@ -51,4 +73,4 @@ const Page: React.FC<PageProperties> = (properties) => {
 }
 
 
-export default Page;
+export default FileList;

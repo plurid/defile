@@ -1,10 +1,10 @@
-import {
-    Dirent,
-} from 'fs';
+// import {
+//     Dirent,
+// } from 'fs';
 
 import React, {
-    useState,
-    useEffect,
+    // useState,
+    // useEffect,
 } from 'react';
 
 import PluridApp, {
@@ -16,24 +16,24 @@ import PluridApp, {
 
 import FileList from '../../components/FileList';
 
-import PluriverseContext from './context';
+// import PluriverseContext from './context';
 
-import {
-    ignoreHiddenFiles,
-    getHomeDirectory,
-} from '../../services/logic/files';
+// import {
+//     ignoreHiddenFiles,
+//     getHomeDirectory,
+// } from '../../services/logic/files';
 
 
 
 const Pluriverse: React.FC<any> = () => {
-    const [files, setFiles] = useState<Dirent[]>([]);
+    // const [files, setFiles] = useState<Dirent[]>([]);
 
     const pluridPages: PluridPage[] = [
         {
             id: 'home',
-            path: '/',
+            path: '/:path',
             component: {
-                element: () => <FileList id="home" />,
+                element: () => <FileList path="/Users/Cavel" />,
             },
             root: true,
         },
@@ -51,25 +51,25 @@ const Pluriverse: React.FC<any> = () => {
         },
     };
 
-    useEffect(() => {
-        const getFiles = async () => {
-            const files = await getHomeDirectory();
-            setFiles(ignoreHiddenFiles(files));
-        }
+    // useEffect(() => {
+    //     const getFiles = async () => {
+    //         const files = await getHomeDirectory();
+    //         setFiles(ignoreHiddenFiles(files));
+    //     }
 
-        getFiles();
-    }, []);
+    //     getFiles();
+    // }, []);
 
-    const pageContext = {
-        files,
-    };
+    // const pageContext = {
+    //     files,
+    // };
 
     return (
         <PluridApp
             pages={pluridPages}
             configuration={pluridAppConfiguration}
-            pageContext={PluriverseContext}
-            pageContextValue={pageContext}
+            // pageContext={PluriverseContext}
+            // pageContextValue={pageContext}
         />
     );
 }
