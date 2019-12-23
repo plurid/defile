@@ -2,6 +2,8 @@ import {
     Dirent,
 } from 'fs';
 
+import path from 'path';
+
 import React, {
     // useState,
 } from 'react';
@@ -25,18 +27,27 @@ const FileItem: React.FC<FileItemOwnProperties> = (properties) => {
     const {
         file,
     } = properties;
-    console.log(file);
 
     const isFile = file.isFile();
     const isDirectory = file.isDirectory();
+
+    const extension = isFile
+        ? path.extname(file.name)
+        : '';
 
     return (
         <StyledFileItem>
             <StyledFileItemIcon>
                 {isDirectory
-                    ? (<DirectoryIcon />)
-                    : isFile
-                        ? (<FileIcon />)
+                    ? (
+                        <DirectoryIcon
+                        />
+                    ) : isFile
+                        ? (
+                            <FileIcon
+                                extension={extension}
+                            />
+                        )
                         : ''
                 }
             </StyledFileItemIcon>
