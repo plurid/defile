@@ -2,7 +2,19 @@ import React from 'react';
 
 
 
-const FileIcon: React.FC<any> = () => {
+interface FileIconOwnProperties {
+    extension: string;
+}
+
+type FileIconProperties = FileIconOwnProperties;
+
+const FileIcon: React.FC<FileIconProperties> = (properties) => {
+    const {
+        extension,
+    } = properties;
+
+    console.log(extension);
+
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
             <defs>
