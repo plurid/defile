@@ -1,5 +1,6 @@
 import {
     promises as fs,
+    Dirent,
 } from 'fs';
 import os from 'os';
 
@@ -16,15 +17,20 @@ export const getHomeDirectory = async () => {
 export const getDirectoryFiles = async (
     path: string,
 ) => {
-    const files = await fs.readdir(path);
+    const files = await fs.readdir(
+        path,
+        {
+            withFileTypes: true,
+        },
+    );
     return files;
 }
 
 
 export const ignoreHiddenFiles = (
-    files: string[],
+    files: Dirent[],
 ) => {
     return files.filter(
-        file => !(/(^|\/)\.[^\/\.]/g).test(file)
+        file => !(/(^|\/)\.[^\/\.]/g).test(file.name)
     );
 }
