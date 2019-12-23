@@ -24,11 +24,13 @@ import FileIcon from '../../../../assets/icons/file-icon';
 
 
 interface FileItemOwnProperties {
+    path: string,
     file: Dirent,
 }
 
 const FileItem: React.FC<FileItemOwnProperties> = (properties) => {
     const {
+        path: filepath,
         file,
     } = properties;
 
@@ -41,7 +43,7 @@ const FileItem: React.FC<FileItemOwnProperties> = (properties) => {
 
     return (
         <PluridLink
-            page="/asd"
+            page={`/${filepath}/${file}`}
             devisible={true}
             style={{
                 display: 'block',

@@ -42,7 +42,7 @@ const FileList: React.FC<FileListProperties> = (properties) => {
     useEffect(() => {
         const getFiles = async () => {
             const files = await getDirectoryFiles(path);
-            console.log('files', files);
+            // console.log('files', files);
             setFiles(ignoreHiddenFiles(files));
         }
 
@@ -58,6 +58,7 @@ const FileList: React.FC<FileListProperties> = (properties) => {
                             key={file.name}
                         >
                             <FileItem
+                                path={path}
                                 file={file}
                             />
                         </li>
