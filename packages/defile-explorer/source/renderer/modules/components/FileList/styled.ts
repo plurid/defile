@@ -14,5 +14,9 @@ export const StyledFileList: any = styled.div`
 
     li {
         padding: 0.3rem 0.7rem;
+
+        :hover {
+            background: hsl(280, 73%, 44%);
+        }
     }
 `;
