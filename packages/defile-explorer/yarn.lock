@@ -339,10 +339,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@plurid/plurid-data@^0.1.80":
-  version "0.1.80"
-  resolved "https://registry.yarnpkg.com/@plurid/plurid-data/-/plurid-data-0.1.80.tgz#b67452c6dd1fea0c23f8c71ec561d7846bc79a6e"
-  integrity sha512-fy8XLMqSayZ0gkQoORIwLBaAwrwlLESH/SN04kjsxcwpv/IMzz6vI9JV+S5ysYbUxkC5jAk7ZAy47aV2APt8tA==
+"@plurid/plurid-data@^0.1.82":
+  version "0.1.82"
+  resolved "https://registry.yarnpkg.com/@plurid/plurid-data/-/plurid-data-0.1.82.tgz#0fa9c8cc4e01e98a0d06eef38c9e0e55e38ba6d5"
+  integrity sha512-SGPDjU5CEFpLML9a/LAB9ypGK+jz+8DEzeaHtrGh98N3UeGJH4464Z/tVn1Tu2Ggt20msw4wTqjM/KkUYxLPtA==
 
 "@plurid/plurid-engine@^0.1.34":
   version "0.1.34"
@@ -354,34 +354,36 @@
   resolved "https://registry.yarnpkg.com/@plurid/plurid-functions/-/plurid-functions-0.1.4.tgz#e67d94df1db8646118144963ff0cb1b78316760b"
   integrity sha512-x3bmBQQKQ+ARM5lt4d/6evQS22bgKVadkFTBd/fTaKKa6wVmwdUcqtGkB6A3nqWsKS2KivJ6AmJkMGW1twz/QQ==
 
+"@plurid/plurid-icons-react@^0.1.14":
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/@plurid/plurid-icons-react/-/plurid-icons-react-0.1.14.tgz#b7c65416f1ed00371fa251b16b5574a74b13178e"
+  integrity sha512-JXiq7gOKn365mrdavcIXIcxH9AwfTG1UDK5hz2yLC5VQ6DjFURyZPs/AAKBXqsgthhGWPKVzhM9WNH1/BX4chw==
+
 "@plurid/plurid-pubsub@^0.1.3":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@plurid/plurid-pubsub/-/plurid-pubsub-0.1.3.tgz#f5014195a065f13c47f2895e4942ba1f3ec045a3"
   integrity sha512-mviWTVQhkIifQApuLa60jSVA+azeeKXYvNTFejzJJtEFG0s1h2a1BqtaH/Fj4wCzymivJsD47JqbaLfg7Xw4zA==
 
-"@plurid/plurid-react@^0.1.86":
-  version "0.1.86"
-  resolved "https://registry.yarnpkg.com/@plurid/plurid-react/-/plurid-react-0.1.86.tgz#dec38050daad554cfb2ae79add90f583dea6a520"
-  integrity sha512-hAkUk8wMyVFI0G8wWHkxibYY2KxNQV5VAS5z1lBgryWe9TNRvT7UrRCQObMF6UgBEkAAXnpAWqiVRBKBaS9XcA==
+"@plurid/plurid-react@^0.1.91":
+  version "0.1.91"
+  resolved "https://registry.yarnpkg.com/@plurid/plurid-react/-/plurid-react-0.1.91.tgz#b6f602a1bd76329889ec2e663015dbf425fa1181"
+  integrity sha512-dRXFHZRm5LRHCkeNM+FutxA1QDHtjq7YVWjZeYF6WQY1TSXSEq2w/GedAcnZ6lUe077oD4wCMGYAPo8IJyup8A==
   dependencies:
-    "@plurid/plurid-data" "^0.1.80"
+    "@plurid/plurid-data" "^0.1.82"
     "@plurid/plurid-engine" "^0.1.34"
-    "@plurid/plurid-functions" "^0.1.4"
     "@plurid/plurid-pubsub" "^0.1.3"
-    "@plurid/plurid-themes" "^0.1.21"
-    "@plurid/plurid-ui-react" "^0.1.38"
     hammerjs "^2.0.8"
     redux-devtools-extension "^2.13.8"
 
-"@plurid/plurid-themes@^0.1.21":
-  version "0.1.21"
-  resolved "https://registry.yarnpkg.com/@plurid/plurid-themes/-/plurid-themes-0.1.21.tgz#0b1c18e2bbeb1d56d08b1c8a9b11e32425c77a64"
-  integrity sha512-u5iKgjbiPHQnYv3ZyO1SOIf8XBRkRj0PQxHtuuxIqBH6Hbkkbee5+OcgvHnD474lAcnPnJ/yKTyGDipcnthHmw==
+"@plurid/plurid-themes@^0.1.23":
+  version "0.1.23"
+  resolved "https://registry.yarnpkg.com/@plurid/plurid-themes/-/plurid-themes-0.1.23.tgz#823ce7ac120e392cf62b3a07f4dcafe888fc62c2"
+  integrity sha512-862vnb9FTgXdSTiz5qON3ONwTtSXg9tCFQl11aRDRnOKpjkrZ2LDywm/RvTNiD2WTU7HBnFbL2z2dKEp3gLkaA==
 
-"@plurid/plurid-ui-react@^0.1.38":
-  version "0.1.38"
-  resolved "https://registry.yarnpkg.com/@plurid/plurid-ui-react/-/plurid-ui-react-0.1.38.tgz#6a534815c377e71d36bf56aa16e9d485d2a724d4"
-  integrity sha512-BrhDPGSD3wWtmcYgd3iFKL1qNh5f4Ju/OHuBAT435UigZooD8iA4gpHrnr5/nyTtuLgGXz5I+/OnGaJwiVLNFA==
+"@plurid/plurid-ui-react@^0.1.46":
+  version "0.1.46"
+  resolved "https://registry.yarnpkg.com/@plurid/plurid-ui-react/-/plurid-ui-react-0.1.46.tgz#1c0d1144112fda1307ca27b9c423d05588189daa"
+  integrity sha512-YmKYIut7x67Mj3Jbfgd9DFte+TCcJvJKcJYH9MUmE8/qh6AKUJzb1OnDuoClOPy0EJLDuJGDpaJm5fxc90SkBw==
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
@@ -456,10 +458,10 @@
     "@types/istanbul-lib-coverage" "*"
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@^24.0.24":
-  version "24.0.24"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.24.tgz#0f2f523dc77cc1bc6bef34eaf287ede887a73f05"
-  integrity sha512-vgaG968EDPSJPMunEDdZvZgvxYSmeH8wKqBlHSkBt1pV2XlLEVDzsj1ZhLuI4iG4Pv841tES61txSBF0obh4CQ==
+"@types/jest@^24.0.25":
+  version "24.0.25"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.25.tgz#2aba377824ce040114aa906ad2cac2c85351360f"
+  integrity sha512-hnP1WpjN4KbGEK4dLayul6lgtys6FPz0UfxMeMQCv0M+sTnzN3ConfiO72jHgLxl119guHgI8gLqDOrRLsyp2g==
   dependencies:
     jest-diff "^24.3.0"
 
@@ -509,10 +511,10 @@
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
 
-"@types/styled-components@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.4.1.tgz#bc40cf5ce0708032f4b148b04ab3c470d3e74026"
-  integrity sha512-cQXT4pkAkM0unk/s26UBrJx9RmJ2rNUn2aDTgzp1rtu+tTkScebE78jbxNWhlqkA43XF3d41CcDlyl9Ldotm2g==
+"@types/styled-components@^4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.4.2.tgz#709fa7afd7dc0963b8316a0159240f0fe19a026d"
+  integrity sha512-dngFx2PuGoy0MGE68eHayAmJvLSqWrnTe9w+DnQruu8PS+waWEsKmoBRhkzL2h2pK1OJhzJhVfuiz+oZa4etpA==
   dependencies:
     "@types/hoist-non-react-statics" "*"
     "@types/react" "*"
@@ -1950,10 +1952,10 @@ electron-packager@^14.1.1:
     semver "^6.0.0"
     yargs-parser "^16.0.0"
 
-electron@^7.1.7:
-  version "7.1.7"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-7.1.7.tgz#520e2bc422e3dfd4bae166dd3be62101f2cbdc52"
-  integrity sha512-aCLJ4BJwnvOckJgovNul22AYlMFDzm4S4KqKCG2iBlFJyMHBxXAKFKMsgYd40LBZWS3hcY6RHpaYjHSAPLS1pw==
+electron@^7.1.8:
+  version "7.1.8"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-7.1.8.tgz#7cd50fdf42c55c9de86ab126e983d23fd89d5d99"
+  integrity sha512-1cWT7toVcSTKu3HdnhDQpbTmI5QCSKtIbg+wHUkSZCdAqjPcuH+dpm+j21g38LbE2DoIzdryaN0RTZOqTPebMA==
   dependencies:
     "@electron/get" "^1.0.1"
     "@types/node" "^12.0.12"
@@ -4957,10 +4959,10 @@ redux-thunk@^2.3.0:
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
   integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
 
-redux@^4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.4.tgz#4ee1aeb164b63d6a1bcc57ae4aa0b6e6fa7a3796"
-  integrity sha512-vKv4WdiJxOWKxK0yRoaK3Y4pxxB0ilzVx6dszU2W8wLxlb2yikRph4iV/ymtdJ6ZxpBLFbyrxklnT5yBbQSl3Q==
+redux@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.5.tgz#4db5de5816e17891de8a80c424232d06f051d93f"
+  integrity sha512-VSz1uMAH24DM6MF72vcojpYPtrTUu3ByVWfPL1nPfVRb5mZVTve5GnNCUV53QM/BZ66xfWrm0CTWoM+Xlz8V1w==
   dependencies:
     loose-envify "^1.4.0"
     symbol-observable "^1.2.0"
@@ -5827,10 +5829,10 @@ truncate-utf8-bytes@^1.0.0:
   dependencies:
     utf8-byte-length "^1.0.1"
 
-ts-jest@^24.2.0:
-  version "24.2.0"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-24.2.0.tgz#7abca28c2b4b0a1fdd715cd667d65d047ea4e768"
-  integrity sha512-Yc+HLyldlIC9iIK8xEN7tV960Or56N49MDP7hubCZUeI7EbIOTsas6rXCMB4kQjLACJ7eDOF4xWEO5qumpKsag==
+ts-jest@^24.3.0:
+  version "24.3.0"
+  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-24.3.0.tgz#b97814e3eab359ea840a1ac112deae68aa440869"
+  integrity sha512-Hb94C/+QRIgjVZlJyiWwouYUF+siNJHJHknyspaOcZ+OQAIdFG/UrdQVXw/0B8Z3No34xkUXZJpOTy9alOWdVQ==
   dependencies:
     bs-logger "0.x"
     buffer-from "1.x"
@@ -6139,10 +6141,10 @@ webpack-sources@^1.4.0, webpack-sources@^1.4.1:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.41.4:
-  version "4.41.4"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.4.tgz#4bec4125224bdf50efa8be6226c19047599cd034"
-  integrity sha512-Lc+2uB6NjpCWsHI3trkoISOI64h9QYIXenbEWj3bn3oyjfB1lEBXjWAfAyY2sM0rZn41oD5V91OLwKRwS6Wp8Q==
+webpack@^4.41.5:
+  version "4.41.5"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.5.tgz#3210f1886bce5310e62bb97204d18c263341b77c"
+  integrity sha512-wp0Co4vpyumnp3KlkmpM5LWuzvZYayDwM2n17EHFr4qxBBbRokC7DJawPJC7TfSFZ9HZ6GsdH40EBj4UV0nmpw==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
