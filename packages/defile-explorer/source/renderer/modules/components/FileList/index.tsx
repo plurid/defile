@@ -35,13 +35,16 @@ const FileList: React.FC<FileListProperties> = (properties) => {
         plurid,
     } = properties;
 
-    // console.log(path, plurid);
+    console.log(path, plurid);
 
     const [files, setFiles] = useState<Dirent[]>([]);
 
     useEffect(() => {
         const getFiles = async () => {
-            const files = await getDirectoryFiles(path);
+            const _path = plurid.parameters
+                ? path + plurid.parameters.path
+                : path;
+            const files = await getDirectoryFiles(_path);
             // console.log('files', files);
             setFiles(ignoreHiddenFiles(files));
         }
