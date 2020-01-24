@@ -35,7 +35,7 @@ const FileList: React.FC<FileListProperties> = (properties) => {
         plurid,
     } = properties;
 
-    console.log(plurid);
+    // console.log(path, plurid);
 
     const [files, setFiles] = useState<Dirent[]>([]);
 
