@@ -41,9 +41,11 @@ const FileItem: React.FC<FileItemOwnProperties> = (properties) => {
         ? path.extname(file.name)
         : '';
 
+    const page = `${filepath}${file.name}`;
+
     return (
         <PluridLink
-            page={`${filepath}${file.name}`}
+            page={page}
             devisible={true}
             style={{
                 display: 'block',
