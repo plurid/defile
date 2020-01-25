@@ -35,7 +35,7 @@ const Pluriverse: React.FC<any> = () => {
             component: {
                 element: (properties) => (
                     <FileList
-                        path="/Users/Cavel/Desktop/defile/"
+                        path="/Users-Cavel-Desktop-defile-"
                         plurid={properties.plurid}
                     />
                 ),

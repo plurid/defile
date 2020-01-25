@@ -45,8 +45,8 @@ const FileItem: React.FC<FileItemOwnProperties> = (properties) => {
 
     return (
         <PluridLink
-            page={'/' + file.name}
-            // page={page}
+            // page={'/' + file.name}
+            page={'/' + page.slice(1,).replace(/\//g, '-')}
             devisible={true}
             style={{
                 display: 'block',
