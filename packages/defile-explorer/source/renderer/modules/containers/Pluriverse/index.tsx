@@ -7,8 +7,9 @@ import React, {
     // useEffect,
 } from 'react';
 
-import PluridApp, {
-    PluridPage,
+import {
+    PluridApplication,
+    PluridPlane,
     PluridConfiguration,
     RecursivePartial,
     // SPACE_LAYOUT,
@@ -28,19 +29,20 @@ import FileList from '../../components/FileList';
 const Pluriverse: React.FC<any> = () => {
     // const [files, setFiles] = useState<Dirent[]>([]);
 
-    const pluridPages: PluridPage[] = [
+    const pluridPlanes: PluridPlane[] = [
         {
-            id: 'home',
+            // id: 'home',
             path: '/:path',
             component: {
-                element: (properties) => (
+                kind: 'react',
+                element: (properties: any) => (
                     <FileList
                         path="/Users-Cavel-Desktop-defile-"
                         plurid={properties.plurid}
                     />
                 ),
             },
-            root: true,
+            // root: true,
         },
     ];
 
@@ -70,8 +72,8 @@ const Pluriverse: React.FC<any> = () => {
     // };
 
     return (
-        <PluridApp
-            pages={pluridPages}
+        <PluridApplication
+            planes={pluridPlanes}
             configuration={pluridAppConfiguration}
             // pageContext={PluriverseContext}
             // pageContextValue={pageContext}

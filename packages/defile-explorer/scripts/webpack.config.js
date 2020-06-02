@@ -45,10 +45,12 @@ module.exports = [
             new HtmlWebpackPlugin({
                 template: './source/window/index.html'
             }),
-            new CopyWebpackPlugin([
-                { from: './source/window/package.json', to: './package.json' },
-                { from: './source/assets/', to: './assets/' },
-            ]),
+            new CopyWebpackPlugin({
+                patterns: [
+                    { from: './source/window/package.json', to: './package.json' },
+                    { from: './source/assets/', to: './assets/' },
+                ],
+            }),
         ]
     }
 ];
