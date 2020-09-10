@@ -2,7 +2,7 @@
     "name": "@plurid/defile-explorer",
     "version": "0.0.1",
     "description": "Plurid-powered file explorer based on Electron/Chromium.",
-    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
+    "author": "ly3xqhl8g9 <ly3xqhl8g9@plurid.com> (https://plurid.com)",
     "license": "MIT",
     "homepage": "https://defile.plurid.com",
     "repository": {
