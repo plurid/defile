@@ -9,6 +9,7 @@
     // #region external
     import {
         DefileOptions,
+        DefileSaveOptions,
     } from '~data/interfaces';
 
     import {
@@ -98,10 +99,7 @@ class Defile {
      */
     public async save(
         data: any | string,
-        options?: {
-            name?: string,
-            contentType?: string,
-        },
+        options?: Partial<DefileSaveOptions>,
     ) {
         // hits endpoint `defile.plurid.com/save` with `Defile-Token`: this.token and body: { name }
 
