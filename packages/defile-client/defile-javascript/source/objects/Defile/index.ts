@@ -47,6 +47,7 @@ class Defile {
             return;
         }
 
+        // hits endpoint `defile.plurid.com/get?resource=${resource}` with `Defile-Token`: this.token
     }
 
 
@@ -65,6 +66,7 @@ class Defile {
             return;
         }
 
+        // hits endpoint `defile.plurid.com/save` with `Defile-Token`: this.token and body: { name }
     }
 }
 // #endregion module
