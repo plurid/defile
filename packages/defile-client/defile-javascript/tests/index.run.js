@@ -25,3 +25,20 @@ runner(
         stream.pipe(file);
     },
 );
+
+
+
+runner(
+    async (
+        _check,
+    ) => {
+        const token = '__TEST__';
+        const file = 'data';
+
+        const defile = new Defile(
+            token,
+        );
+
+        const saved = await defile.save(file);
+    },
+);
