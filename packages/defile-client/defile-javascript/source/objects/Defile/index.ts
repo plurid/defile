@@ -1,8 +1,20 @@
 // #region imports
+    // #region libraries
+    import fetch from 'cross-fetch';
+
+    import FormData from 'form-data';
+    // #endregion libraries
+
+
     // #region external
     import {
         DefileOptions,
     } from '~data/interfaces';
+
+    import {
+        DEFILE_ENDPOINT,
+        DefileToken,
+    } from '~data/constants';
     // #endregion external
 // #endregion imports
 
@@ -43,11 +55,33 @@ class Defile {
     public async get(
         resource: string,
     ) {
+        // hits endpoint `defile.plurid.com/get?resource=${resource}` with `Defile-Token`: this.token
+
         if (!this.token) {
             return;
         }
 
-        // hits endpoint `defile.plurid.com/get?resource=${resource}` with `Defile-Token`: this.token
+        const getEndpoint = DEFILE_ENDPOINT + `/get?resource=${resource}`;
+
+        const headers = {};
+        headers[DefileToken] = this.token;
+
+        const response = await fetch(
+            getEndpoint,
+            {
+                method: 'GET',
+                headers,
+            },
+        );
+
+        if (
+            response.status !== 200
+            || !response.body
+        ) {
+            return;
+        }
+
+        return response.body;
     }
 
 
@@ -62,11 +96,35 @@ class Defile {
         data: any | string,
         name?: string,
     ) {
+        // hits endpoint `defile.plurid.com/save` with `Defile-Token`: this.token and body: { name }
+
         if (!this.token) {
-            return;
+            return false;
         }
 
-        // hits endpoint `defile.plurid.com/save` with `Defile-Token`: this.token and body: { name }
+        const saveEndpoint = DEFILE_ENDPOINT + `/save`;
+
+        const formData = new FormData();
+        formData.append('defile', data);
+        if (name) {
+            formData.append('name', name);
+        }
+
+        const headers = {
+            ...formData.getHeaders(),
+        };
+        headers[DefileToken] = this.token;
+
+        const response = await fetch(
+            saveEndpoint,
+            {
+                method: 'POST',
+                headers,
+                body: formData.getBuffer(),
+            },
+        );
+
+        return response.status === 200;
     }
 }
 // #endregion module
