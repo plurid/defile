@@ -98,7 +98,10 @@ class Defile {
      */
     public async save(
         data: any | string,
-        name?: string,
+        options?: {
+            name?: string,
+            contentType?: string,
+        },
     ) {
         // hits endpoint `defile.plurid.com/save` with `Defile-Token`: this.token and body: { name }
 
@@ -108,14 +111,22 @@ class Defile {
 
         const saveEndpoint = DEFILE_ENDPOINT + defileEndpoints.save();
 
-        const formData = new FormData();
-        formData.append(defileFields.defile, data);
-        if (name) {
-            formData.append(defileFields.name, name);
+        const form = new FormData();
+        form.append(
+            defileFields.defile,
+            data,
+            {
+                contentType: options?.contentType,
+            },
+        );
+        if (options?.name) {
+            form.append(defileFields.name, options?.name);
         }
 
+        const formHeaders = form.getHeaders();
+
         const headers = {
-            ...formData.getHeaders(),
+            ...formHeaders,
         };
         headers[DefileToken] = this.token;
 
@@ -124,7 +135,8 @@ class Defile {
             {
                 method: HTTP.POST,
                 headers,
-                body: formData.getBuffer(),
+                // FORCED
+                body: form as any,
             },
         );
 
