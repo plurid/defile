@@ -20,7 +20,7 @@ runner(
 
         const stream = await defile.get(resource);
 
-        const file = fs.createWriteStream('./tests/file');
+        const file = fs.createWriteStream('./tests/file.png');
 
         stream.pipe(file);
     },
@@ -33,12 +33,17 @@ runner(
         _check,
     ) => {
         const token = '__TEST__';
-        const file = 'data';
+        // const file = 'text data file';
+        const file = fs.createReadStream('./tests/file.png');
 
         const defile = new Defile(
             token,
         );
 
-        const saved = await defile.save(file);
+
+        const saved = await defile.save(file, {
+            // name: 'filename',
+        });
+        console.log('saved', saved);
     },
 );
