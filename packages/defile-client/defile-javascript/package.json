@@ -1,0 +1,77 @@
+{
+    "name": "@plurid/defile-client",
+    "version": "0.0.0-0",
+    "description": "Client for Defile",
+    "keywords": [
+        "defile",
+        "client"
+    ],
+    "author": "ly3xqhl8g9 <ly3xqhl8g9@plurid.com> (https://plurid.com)",
+    "license": "SEE LICENSE IN LICENSE",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/plurid/defile"
+    },
+    "bugs": {
+        "email": "source@plurid.com",
+        "url": "https://github.com/plurid/defile/issues"
+    },
+    "homepage": "https://github.com/plurid/defile/tree/master/packages/defile-client/defile-javascript",
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/",
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=12",
+        "npm": ">=6"
+    },
+    "main": "distribution/index.js",
+    "module": "distribution/index.es.js",
+    "typings": "distribution/index.d.ts",
+    "files": [
+        "distribution"
+    ],
+    "scripts": {
+        "test": "jest -c ./configurations/jest.config.js --coverage ./source",
+        "start": "rollup -c ./scripts/rollup.config.ts -w",
+        "runner": "runner tests",
+        "build.removeTests": "rm -rf `find ./distribution/ -type d -name __tests__`",
+        "build.types": "ttsc --emitDeclarationOnly",
+        "build.development": "rollup -c ./scripts/rollup.config.ts",
+        "build.production": "rollup -c ./scripts/rollup.config.ts",
+        "build": "yarn build.production && yarn build.types && yarn build.removeTests",
+        "prebuild": "rm -rf distribution",
+        "prepublishOnly": "yarn build"
+    },
+    "peerDependencies": {
+        "@plurid/deon": "*",
+        "@plurid/plurid-functions": "*",
+        "cross-fetch": ">=3.1"
+    },
+    "devDependencies": {
+        "@plurid/deon": "^0.0.0-8",
+        "@plurid/plurid-functions": "0.0.0-17",
+        "@plurid/runner": "^0.0.0-9",
+        "@rollup/plugin-commonjs": "^21.0.1",
+        "@rollup/plugin-node-resolve": "^13.0.6",
+        "@types/jest": "^27.0.3",
+        "@types/node": "^16.11.11",
+        "@types/ws": "^8.2.1",
+        "@typescript-eslint/eslint-plugin": "^5.5.0",
+        "@typescript-eslint/parser": "^5.5.0",
+        "@zerollup/ts-transform-paths": "^1.7.18",
+        "cross-fetch": "^3.1.4",
+        "eslint": "^8.3.0",
+        "jest": "^27.4.3",
+        "jest-config": "^27.4.3",
+        "react": "^17.0.2",
+        "rollup": "^2.60.2",
+        "rollup-plugin-terser": "^7.0.2",
+        "rollup-plugin-typescript2": "^0.31.1",
+        "ts-jest": "^27.0.7",
+        "ts-node": "^10.4.0",
+        "ttypescript": "^1.5.13",
+        "typescript": "^4.5.2",
+        "typescript-transform-paths": "^3.3.1"
+    }
+}
