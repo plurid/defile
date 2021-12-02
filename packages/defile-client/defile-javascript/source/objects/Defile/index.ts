@@ -12,6 +12,10 @@
     } from '~data/interfaces';
 
     import {
+        HTTP,
+        defileEndpoints,
+        defileFields,
+
         DEFILE_ENDPOINT,
         DefileToken,
     } from '~data/constants';
@@ -61,7 +65,7 @@ class Defile {
             return;
         }
 
-        const getEndpoint = DEFILE_ENDPOINT + `/get?resource=${resource}`;
+        const getEndpoint = DEFILE_ENDPOINT + defileEndpoints.get(resource);
 
         const headers = {};
         headers[DefileToken] = this.token;
@@ -69,13 +73,13 @@ class Defile {
         const response = await fetch(
             getEndpoint,
             {
-                method: 'GET',
+                method: HTTP.GET,
                 headers,
             },
         );
 
         if (
-            response.status !== 200
+            response.status !== HTTP.SUCCESS
             || !response.body
         ) {
             return;
@@ -102,12 +106,12 @@ class Defile {
             return false;
         }
 
-        const saveEndpoint = DEFILE_ENDPOINT + `/save`;
+        const saveEndpoint = DEFILE_ENDPOINT + defileEndpoints.save();
 
         const formData = new FormData();
-        formData.append('defile', data);
+        formData.append(defileFields.defile, data);
         if (name) {
-            formData.append('name', name);
+            formData.append(defileFields.name, name);
         }
 
         const headers = {
@@ -118,13 +122,13 @@ class Defile {
         const response = await fetch(
             saveEndpoint,
             {
-                method: 'POST',
+                method: HTTP.POST,
                 headers,
                 body: formData.getBuffer(),
             },
         );
 
-        return response.status === 200;
+        return response.status === HTTP.SUCCESS;
     }
 }
 // #endregion module
