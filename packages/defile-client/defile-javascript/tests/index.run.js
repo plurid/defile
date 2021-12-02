@@ -44,6 +44,5 @@ runner(
         const saved = await defile.save(file, {
             // name: 'filename',
         });
-        console.log('saved', saved);
     },
 );
