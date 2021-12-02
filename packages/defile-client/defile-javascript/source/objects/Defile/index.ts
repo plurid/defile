@@ -100,7 +100,7 @@ class Defile {
     public async save(
         data: any | string,
         options?: Partial<DefileSaveOptions>,
-    ) {
+    ): Promise<false | string> {
         // hits endpoint `defile.plurid.com/save` with `Defile-Token`: this.token and body: { name }
 
         if (!this.token) {
@@ -109,12 +109,18 @@ class Defile {
 
         const saveEndpoint = DEFILE_ENDPOINT + defileEndpoints.save();
 
+        const contentType = options?.contentType
+            ? options.contentType
+            : typeof data === 'string'
+                ? 'text/plain'
+                : undefined;
+
         const form = new FormData();
         form.append(
-            defileFields.defile,
+            defileFields.file,
             data,
             {
-                contentType: options?.contentType,
+                contentType,
             },
         );
         if (options?.name) {
@@ -138,7 +144,19 @@ class Defile {
             },
         );
 
-        return response.status === HTTP.SUCCESS;
+        if (
+            response.status !== HTTP.SUCCESS
+            || !response.body
+        ) {
+            return false;
+        }
+
+        const responseData = await response.json();
+        if (!responseData) {
+            return false;
+        }
+
+        return responseData.id;
     }
 }
 // #endregion module
