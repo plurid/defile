@@ -1,14 +1,14 @@
+// #region imports
+    // #region external
+    import {
+        isEncoded,
+    } from '~utilities/index';
+    // #endregion external
+// #endregion imports
+
+
+
 // #region exports
-function isEncoded(
-    uri: string,
-) {
-    uri = uri || '';
-
-    return uri !== decodeURIComponent(uri);
-}
-
-
-
 export const HTTP = {
     GET: 'GET',
     POST: 'POST',
@@ -18,11 +18,13 @@ export const HTTP = {
 
 export const defileEndpoints = {
     get: (resource: string) => {
+        const base = '/get?resource=';
+
         if (isEncoded(resource)) {
-            return `/get?resource=${resource}`;
+            return base + resource;
         }
 
-        return `/get?resource=${encodeURIComponent(resource)}`;
+        return base + encodeURIComponent(resource);
     },
     save: () => '/save',
 };
