@@ -2,11 +2,11 @@ const fs = require('fs');
 
 const runner = require('@plurid/runner').default;
 
-const Defile = require('../distribution').default;
-
 
 
 process.env.DEFILE_SERVER_ENDPOINT = 'http://localhost:33712';
+const Defile = require('../distribution').default;
+
 
 
 runner(
@@ -67,11 +67,14 @@ runner(
 
         const defile = new Defile(
             token,
+            {
+                debug: true,
+            },
         );
 
 
         const saved = await defile.save(file, {
-            // name: 'filename',
+            name: 'filename',
         });
     },
 );
