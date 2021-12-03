@@ -4,6 +4,9 @@
         Readable,
     } from 'stream';
 
+    import fs from 'fs';
+    import path from 'path';
+
     import fetch from 'cross-fetch';
 
     import FormData from 'form-data';
@@ -100,19 +103,20 @@ class Defile {
 
 
     /**
-     * Gets a file stream based on the `resource`, the defile ID or the defile Name.
+     * Gets a file stream based on the `resource`, the defile ID or the defile name.
      *
      * @param resource
      * @returns
      */
     public async get(
         resource: string,
-    ): Promise<ReadableStream<Uint8Array> | undefined> {
+    ): Promise<Readable | undefined> {
         const loggerCouldNotGet = loggerBase + `could not get defile '${resource}'`;
 
 
         try {
             // hits endpoint `defile.plurid.com/get?resource=${resource}` with `Defile-Token`: this.token
+
             const valid = this.checkAccess();
             if (!valid) {
                 return;
@@ -140,11 +144,61 @@ class Defile {
                 return;
             }
 
-            return response.body;
+            // FORCED ReadableStream into Interable
+            const readable = Readable.from(response.body as any);
+
+            return readable;
         } catch (error) {
             this.options.logger('error', loggerCouldNotGet, error);
 
             return;
+        }
+    }
+
+    /**
+     * Receive a defile based on the `resource`, the defile ID or the defile name,
+     * and saves it at the given `filepath`.
+     *
+     * @param resource
+     * @param filepath
+     * @returns
+     */
+    public async receive(
+        resource: string,
+        filepath: string,
+    ): Promise<boolean> {
+        const loggerCouldNotGet = loggerBase + `could not get defile '${resource}'`;
+
+        try {
+            const stream = await this.get(resource);
+            if (!stream) {
+                return false;
+            }
+
+            const status = await new Promise<boolean>((resolve, _reject) => {
+                const resolvedFilepath = path.isAbsolute(filepath)
+                    ? filepath
+                    : path.join(process.cwd(), filepath);
+
+                const file = fs.createWriteStream(resolvedFilepath);
+
+                stream.pipe(file);
+
+                stream.on('error', (error) => {
+                    this.options.logger('error', loggerCouldNotGet, error);
+                    resolve(false);
+                });
+
+                stream.on('end', () => {
+                    resolve(true);
+                });
+            });
+
+            return status;
+        } catch (error) {
+            this.options.logger('error', loggerCouldNotGet, error);
+
+            return false;
         }
     }
 
@@ -153,7 +207,7 @@ class Defile {
      * Saves a stream or a string as a defile under an optionally-given `name`.
      *
      * @param data
-     * @param name
+     * @param options
      * @returns
      */
     public async save(
@@ -165,6 +219,7 @@ class Defile {
 
         try {
             // hits endpoint `defile.plurid.com/save` with `Defile-Token`: this.token and body: { name }
+
             const valid = this.checkAccess();
             if (!valid) {
                 return false;
@@ -214,7 +269,7 @@ class Defile {
                 {
                     method: HTTP.POST,
                     headers,
-                    // FORCED
+                    // FORCED FormData into BodyInit
                     body: form as any,
                 },
             );
