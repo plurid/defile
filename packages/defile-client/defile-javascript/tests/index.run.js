@@ -58,6 +58,27 @@ runner(
 );
 
 
+// Receives defile by name and save to local file
+runner(
+    async (
+        check,
+    ) => {
+        const token = '__TEST__';
+        const resource = 'name';
+
+        const defile = new Defile(
+            token,
+        );
+
+        const received = await defile.receive(
+            resource,
+            './tests/file.get.png',
+        );
+        check('received local file', received, true);
+    },
+);
+
+
 
 // Save string as defile
 runner(
