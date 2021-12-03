@@ -6,6 +6,9 @@ const Defile = require('../distribution').default;
 
 
 
+process.env.DEFILE_SERVER_ENDPOINT = 'http://localhost:33712';
+
+
 runner(
     async (
         check,
