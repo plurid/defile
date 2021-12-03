@@ -63,7 +63,7 @@ class Defile {
      */
     public async get(
         resource: string,
-    ) {
+    ): Promise<ReadableStream<Uint8Array> | undefined> {
         // hits endpoint `defile.plurid.com/get?resource=${resource}` with `Defile-Token`: this.token
 
         if (!this.token) {
