@@ -9,6 +9,7 @@ const Defile = require('../distribution').default;
 
 
 
+// Get defile by name
 runner(
     async (
         check,
@@ -26,13 +27,13 @@ runner(
             return;
         }
 
-        const file = fs.createWriteStream('./tests/file.png');
+        const file = fs.createWriteStream('./tests/file.get.png');
 
         stream.pipe(file);
     },
 );
 
-
+// Get defile by id
 runner(
     async (
         check,
@@ -50,7 +51,7 @@ runner(
             return;
         }
 
-        const file = fs.createWriteStream('./tests/file.png');
+        const file = fs.createWriteStream('./tests/file.get.png');
 
         stream.pipe(file);
     },
@@ -58,6 +59,7 @@ runner(
 
 
 
+// Save string as defile
 runner(
     async (
         _check,
@@ -79,7 +81,7 @@ runner(
     },
 );
 
-
+// Save file as defile
 runner(
     async (
         _check,
