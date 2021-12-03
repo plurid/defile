@@ -23,6 +23,8 @@
 
         DEFILE_ENDPOINT,
         DefileToken,
+
+        loggerBase,
     } from '~data/constants';
     // #endregion external
 // #endregion imports
@@ -32,12 +34,12 @@
 // #region module
 class Defile {
     private token;
-    private options;
+    private options: Required<DefileOptions>;
 
 
     constructor(
         token: string,
-        options?: Partial<DefileOptions>,
+        options?: DefileOptions,
     ) {
         this.token = token;
         this.options = this.resolveOptions(options);
@@ -45,12 +47,48 @@ class Defile {
 
 
     private resolveOptions(
-        options?: Partial<DefileOptions>,
+        options?: DefileOptions,
     ) {
-        const resolvedOptions: DefileOptions = {
+        const resolvedOptions: Required<DefileOptions> = {
+            debug: options?.debug ?? (options?.logger ? true : false),
+            logger: options?.logger || this.logger,
         };
 
         return resolvedOptions;
+    }
+
+    private checkAccess() {
+        if (!DEFILE_ENDPOINT) {
+            this.options.logger('warn', `${loggerBase}no defile server endpoint`);
+            return;
+        }
+
+        if (!this.token) {
+            this.options.logger('warn', `${loggerBase}no defile client token`);
+            return;
+        }
+
+        return true;
+    }
+
+    private logger(
+        type: 'warn' | 'error',
+        message: string,
+        error?: any,
+    ) {
+        if (this.options.debug) {
+            console.log(type, message, error);
+        }
+    }
+
+    private loggerGetResourceText(
+        name: string | undefined
+    ) {
+        if (!name) {
+            return '';
+        }
+
+        return ` '${name}'`;
     }
 
 
@@ -64,33 +102,44 @@ class Defile {
     public async get(
         resource: string,
     ): Promise<ReadableStream<Uint8Array> | undefined> {
-        // hits endpoint `defile.plurid.com/get?resource=${resource}` with `Defile-Token`: this.token
+        const loggerCouldNotGet = loggerBase + `could not get defile '${resource}'`;
 
-        if (!this.token) {
+
+        try {
+            // hits endpoint `defile.plurid.com/get?resource=${resource}` with `Defile-Token`: this.token
+            const valid = this.checkAccess();
+            if (!valid) {
+                return;
+            }
+
+
+            const getEndpoint = DEFILE_ENDPOINT + defileEndpoints.get(resource);
+
+            const headers = {};
+            headers[DefileToken] = this.token;
+
+            const response = await fetch(
+                getEndpoint,
+                {
+                    method: HTTP.GET,
+                    headers,
+                },
+            );
+
+            if (
+                response.status !== HTTP.SUCCESS
+                || !response.body
+            ) {
+                this.options.logger('warn', `${loggerCouldNotGet} · not found`);
+                return;
+            }
+
+            return response.body;
+        } catch (error) {
+            this.options.logger('error', loggerCouldNotGet, error);
+
             return;
         }
-
-        const getEndpoint = DEFILE_ENDPOINT + defileEndpoints.get(resource);
-
-        const headers = {};
-        headers[DefileToken] = this.token;
-
-        const response = await fetch(
-            getEndpoint,
-            {
-                method: HTTP.GET,
-                headers,
-            },
-        );
-
-        if (
-            response.status !== HTTP.SUCCESS
-            || !response.body
-        ) {
-            return;
-        }
-
-        return response.body;
     }
 
 
@@ -103,61 +152,92 @@ class Defile {
      */
     public async save(
         data: Readable | string,
-        options?: Partial<DefileSaveOptions>,
+        options?: DefileSaveOptions,
     ): Promise<false | string> {
-        // hits endpoint `defile.plurid.com/save` with `Defile-Token`: this.token and body: { name }
+        const loggerCouldNotSave = loggerBase + `could not save defile${this.loggerGetResourceText(options?.name)}`;
 
-        if (!this.token) {
-            return false;
-        }
 
-        const saveEndpoint = DEFILE_ENDPOINT + defileEndpoints.save();
+        try {
+            // hits endpoint `defile.plurid.com/save` with `Defile-Token`: this.token and body: { name }
+            const valid = this.checkAccess();
+            if (!valid) {
+                return false;
+            }
 
-        const form = new FormData();
-        if (typeof data === 'string') {
-            form.append(defileFields.string, data);
-        } else {
-            form.append(
-                defileFields.file,
-                data,
+
+            const composeForm = () => {
+                const saveEndpoint = DEFILE_ENDPOINT + defileEndpoints.save();
+
+                const form = new FormData();
+                if (typeof data === 'string') {
+                    form.append(defileFields.string, data);
+                } else {
+                    form.append(
+                        defileFields.file,
+                        data,
+                        {
+                            contentType: options?.contentType,
+                        },
+                    );
+                }
+                if (options?.name) {
+                    form.append(defileFields.name, options.name);
+                }
+
+                const formHeaders = form.getHeaders();
+                const headers = {
+                    ...formHeaders,
+                };
+                headers[DefileToken] = this.token;
+
+                return {
+                    saveEndpoint,
+                    headers,
+                    form,
+                };
+            }
+
+            const {
+                saveEndpoint,
+                headers,
+                form,
+            } = composeForm();
+
+            const response = await fetch(
+                saveEndpoint,
                 {
-                    contentType: options?.contentType,
+                    method: HTTP.POST,
+                    headers,
+                    // FORCED
+                    body: form as any,
                 },
             );
-        }
-        if (options?.name) {
-            form.append(defileFields.name, options.name);
-        }
 
-        const formHeaders = form.getHeaders();
-        const headers = {
-            ...formHeaders,
-        };
-        headers[DefileToken] = this.token;
 
-        const response = await fetch(
-            saveEndpoint,
-            {
-                method: HTTP.POST,
-                headers,
-                // FORCED
-                body: form as any,
-            },
-        );
+            if (
+                response.status !== HTTP.SUCCESS
+                || !response.body
+            ) {
+                this.options.logger('warn', `${loggerCouldNotSave} · bad request`);
 
-        if (
-            response.status !== HTTP.SUCCESS
-            || !response.body
-        ) {
+                return false;
+            }
+
+
+            const responseData = await response.json();
+            if (!responseData) {
+                this.options.logger('warn', `${loggerCouldNotSave} · server error`);
+
+                return false;
+            }
+
+
+            return responseData.id;
+        } catch (error) {
+            this.options.logger('error', loggerCouldNotSave, error);
+
             return false;
         }
-
-        const responseData = await response.json();
-        if (!responseData) {
-            return false;
-        }
-
-        return responseData.id;
     }
 }
 // #endregion module

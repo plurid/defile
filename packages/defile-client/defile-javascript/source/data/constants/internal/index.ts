@@ -35,4 +35,7 @@ export const defileFields = {
     string: 'string',
     name: 'name',
 };
+
+
+export const loggerBase = `defile client :: `;
 // #endregion exports
