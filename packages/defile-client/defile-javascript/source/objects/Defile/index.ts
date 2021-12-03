@@ -50,8 +50,10 @@ class Defile {
         options?: DefileOptions,
     ) {
         const resolvedOptions: Required<DefileOptions> = {
-            debug: options?.debug ?? (options?.logger ? true : false),
-            logger: options?.logger || this.logger,
+            debug: typeof options?.debug === 'boolean'
+                ? options?.debug
+                : (options?.logger ? true : false),
+            logger: options?.logger || this.logger.bind(this),
         };
 
         return resolvedOptions;
@@ -77,7 +79,11 @@ class Defile {
         error?: any,
     ) {
         if (this.options.debug) {
-            console.log(type, message, error);
+            if (error) {
+                console.log(type, message, error);
+            } else {
+                console.log(type, message);
+            }
         }
     }
 
