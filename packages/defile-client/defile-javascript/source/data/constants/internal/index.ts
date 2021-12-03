@@ -32,6 +32,7 @@ export const defileEndpoints = {
 
 export const defileFields = {
     file: 'file',
+    string: 'string',
     name: 'name',
 };
 // #endregion exports

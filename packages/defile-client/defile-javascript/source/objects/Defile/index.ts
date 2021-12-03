@@ -1,5 +1,9 @@
 // #region imports
     // #region libraries
+    import {
+        Readable,
+    } from 'stream';
+
     import fetch from 'cross-fetch';
 
     import FormData from 'form-data';
@@ -98,7 +102,7 @@ class Defile {
      * @returns
      */
     public async save(
-        data: any | string,
+        data: Readable | string,
         options?: Partial<DefileSaveOptions>,
     ): Promise<false | string> {
         // hits endpoint `defile.plurid.com/save` with `Defile-Token`: this.token and body: { name }
@@ -109,26 +113,23 @@ class Defile {
 
         const saveEndpoint = DEFILE_ENDPOINT + defileEndpoints.save();
 
-        const contentType = options?.contentType
-            ? options.contentType
-            : typeof data === 'string'
-                ? 'text/plain'
-                : undefined;
-
         const form = new FormData();
-        form.append(
-            defileFields.file,
-            data,
-            {
-                contentType,
-            },
-        );
+        if (typeof data === 'string') {
+            form.append(defileFields.string, data);
+        } else {
+            form.append(
+                defileFields.file,
+                data,
+                {
+                    contentType: options?.contentType,
+                },
+            );
+        }
         if (options?.name) {
-            form.append(defileFields.name, options?.name);
+            form.append(defileFields.name, options.name);
         }
 
         const formHeaders = form.getHeaders();
-
         const headers = {
             ...formHeaders,
         };
