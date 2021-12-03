@@ -1,11 +1,5 @@
 // #region exports
-export const isProduction = process.env.ENV_MODE === 'production';
-
-
-export const DEFILE_ENDPOINT = isProduction
-    ? 'https://defile.plurid.com'
-    : 'http://localhost:33712';
-
+export const DEFILE_ENDPOINT = process.env.DEFILE_SERVER_ENDPOINT || 'https://defile.plurid.com';
 
 export const DefileToken = 'Defile-Token';
 // #endregion exports
